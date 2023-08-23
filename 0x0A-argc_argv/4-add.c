@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 
 /**
  * main - it all start here
@@ -9,16 +11,32 @@
  */
 int main(int argc, char const *argv[])
 {
-	int sum = 0;
-	char *c;
+	int i;
+	unsigned int k, sum = 0;
+	const char *e;
 
-	while (--argc)
+	if (argc > 1)
 	{
-		for (c = argv[argc]; *c; c++)
-			if (*c < '0' || *c > '9')
-				return (printf("Error\n"), 1);
-		sum += atoi(argv[argc]);
+		for (i = 1; i < argc; i++)
+		{
+			e = argv[i];
+
+			for (k = 0; k < strlen(e); k++)
+			{
+				if (e[k] < 48 || e[k] > 57)
+				{
+					printf("Error\n");
+					return (1);
+				}
+			}
+			sum += atoi(e);
+			e++;
+		}
+		printf("%d\n", sum);
 	}
-	printf("%d\n", sum);
+	else
+	{
+		printf("0\n");
+	}
 	return (0);
 }
