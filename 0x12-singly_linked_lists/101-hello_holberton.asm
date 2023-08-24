@@ -1,12 +1,26 @@
-section		.text
-	extern	printf
-	global	main
+; File: 101-hello_holberton.asm
+; Auth: Solomon Kassa
+; Desc: 64-bit assembly program that prints
+;       Hello, Holberton followed by a new line.
+
+extern printf
+
+section .text
+   global main
 
 main:
-	mov		edi, msg
-	mov		eax, 0
-	call	printf
+   push rbp
 
+   mov rdi,fmt
+   mov rsi,msg
+   mov rax,0
+   call printf
 
-section		.data
-	msg db 'Hello, 	Holberton', 0xa, 0
+   pop rbp
+
+   mov rax,0
+   ret
+
+section .data
+   msg: db "Hello, Holberton", 0
+   fmt: db "%s", 10, 0
